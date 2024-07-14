@@ -1,0 +1,32 @@
+.misc-wrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: center;
+      align-items: center;
+  min-height: 100vh;
+  -ms-flex-pack: center;
+      justify-content: center;
+  position: relative;
+  padding: 1.25rem;
+}
+
+.misc-bg {
+  inline-size: 100%;
+  position: absolute;
+  inset-inline-start: 0;
+  bottom: 0;
+}
+
+.misc-object {
+  position: absolute;
+  bottom: 15%;
+  z-index: 1;
+  left: 3%;
+}
+
+.misc-model {
+  position: relative;
+  bottom: 3rem;
+}
