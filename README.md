@@ -1,6 +1,17 @@
 # Log Reader
 Este projeto é uma aplicação Laravel para processar arquivos de log, armazenar os dados processados no banco de dados e gerar relatórios com base nesses dados.
 
+
+## Estrutura de Containers
+O projeto utiliza Docker para isolar e gerenciar os serviços necessários. Abaixo está um diagrama que ilustra a estrutura de containers do projeto.
+
+![Docker Diagram](https://kroki.io/plantuml/svg/eNptUT1Pw0AM3f0rrEwwBEVMUQbUoUJdikAqU5XBJKaJkvvo-aJSof53LpeWtAhPd37Pfs82LMST84PqAaRrtSVHCvtWsz9aRuN8YwC0qRmTpak6drgy4hP8BgxxA7ywPxjXXbAxtnrX6q-Cehs6lkiCMTHjtrFF_vCYflqVXrFCeuaoo-z7wMoiFH8z6Lhu5VogJuCPgxLT9CmqlVhg8mzcgVwduPuBxUtyY-hMjkKRviRPHySMldGaK98a_W9FlI4VbwMPjIo07Vix9hP9BCeAqjdDjcm4RVxT1QTfl41t34VdOZKm19T1PEDoutpsXn89450N18E8y7P7BG7GnIrnArFGC4cpYcG6Hm_9A9U7l8Q=)
+
+- __nginx:__ Servidor web NGINX que encaminha as requisições para o container PHP.
+- __php:8.2-fpm-alpine:__ Container PHP que roda a aplicação Laravel.
+- __mysql:8.0:__ Container MySQL usado como banco de dados.
+- __redis:__ Container Redis usado para gerenciamento de filas.
+
 ## Estrutura do Banco de Dados
 
 Optei por uma estrutura de banco de dados simplificada, focada nos requisitos do teste. As tabelas consumers e services armazenam informações sobre consumidores e serviços, respectivamente, enquanto a tabela requests registra os detalhes de cada requisição. Os atributos selecionados para as tabelas foram escolhidos com base nos requisitos do teste e nos dados presentes no log de exemplo. Incluí informações como ID do consumidor, ID do serviço, método HTTP, URI, status da resposta, tempos de processamento e timestamp da requisição. Esses dados são suficientes para gerar os relatórios solicitados e permitem uma análise básica do tráfego da API.
