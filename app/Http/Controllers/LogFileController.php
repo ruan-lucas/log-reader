@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UploadPostRequest;
 use App\Services\LogFileService;
-use Illuminate\Http\Request;
 
 class LogFileController extends Controller
 {
-    public function __construct(protected LogFileService $logFileService)
-    {
-        $this->logFileService = $logFileService;
-    }
+    public function __construct(protected LogFileService $logFileService) {}
 
     /**
      * Retorna a lista de arquivos de log processados
@@ -25,13 +22,8 @@ class LogFileController extends Controller
     /**
      * Envia um arquivo de log para ser processado
      */
-    public function upload(Request $request)
+    public function upload(UploadPostRequest $request)
     {
-        // Validação para garantir que o arquivo de log foi enviado
-        $request->validate([
-            'log_file' => 'required|file|extensions:txt',
-        ]);
-
         // Salva o arquivo de log no disco
         $path = $request->file('log_file')->store('log_files');
 
