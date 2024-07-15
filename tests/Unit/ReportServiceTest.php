@@ -5,8 +5,9 @@ namespace Tests\Unit;
 use App\Exports\AverageTimesByServiceExport;
 use App\Exports\RequestsByConsumerExport;
 use App\Exports\RequestsByServiceExport;
-use App\Repositories\LogFileProcessRepositoryInterface;
+use App\Repositories\Contracts\LogFileProcessRepositoryInterface;
 use App\Services\ReportService;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Facades\Storage;
 use InvalidArgumentException;
 use Maatwebsite\Excel\Excel;
@@ -14,11 +15,11 @@ use Maatwebsite\Excel\Facades\Excel as ExcelFacade;
 use Mockery;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Tests\TestCase;
-use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 
 class ReportServiceTest extends TestCase
 {
     private $logFileProcessRepository;
+
     private $reportService;
 
     public function setUp(): void
@@ -44,12 +45,12 @@ class ReportServiceTest extends TestCase
         $this->logFileProcessRepository->shouldReceive('findBy')
             ->with(['status' => 'processing'])
             ->andReturn(new EloquentCollection());
-    
+
         // Simular a criação do arquivo CSV no armazenamento local
         Storage::fake('local');
         $filePath = 'relatorio_requisicoes_por_consumidor.csv';
         Storage::disk('local')->put($filePath, 'dummy content');
-    
+
         // Configurar o mock do Excel para simular o download do arquivo
         ExcelFacade::shouldReceive('download')
             ->once()
@@ -60,10 +61,10 @@ class ReportServiceTest extends TestCase
                     && $headers === ['Content-Type' => 'application/csv'];
             })
             ->andReturn(new BinaryFileResponse(Storage::disk('local')->path($filePath)));
-    
+
         // Chamar o método generateReport com o tipo 'consumer'
         $response = $this->reportService->generateReport('consumer');
-    
+
         // Verificar se a resposta é uma instância de BinaryFileResponse
         $this->assertInstanceOf(BinaryFileResponse::class, $response);
     }
@@ -153,5 +154,4 @@ class ReportServiceTest extends TestCase
         $this->expectExceptionMessage('Aguarde o processamento do arquivo de log');
         $this->reportService->generateReport('consumer');
     }
-
 }

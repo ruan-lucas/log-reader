@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
 use Illuminate\Support\Facades\Redis;
+use Tests\TestCase;
 
 class RedisConnectionTest extends TestCase
 {
