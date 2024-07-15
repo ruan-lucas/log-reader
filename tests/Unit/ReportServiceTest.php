@@ -62,8 +62,8 @@ class ReportServiceTest extends TestCase
             })
             ->andReturn(new BinaryFileResponse(Storage::disk('local')->path($filePath)));
 
-        // Chamar o método generateReport com o tipo 'consumer'
-        $response = $this->reportService->generateReport('consumer');
+        // Chamar o método generateReport com o tipo 'requests_by_consumer'
+        $response = $this->reportService->generateReport('requests_by_consumer');
 
         // Verificar se a resposta é uma instância de BinaryFileResponse
         $this->assertInstanceOf(BinaryFileResponse::class, $response);
@@ -92,8 +92,8 @@ class ReportServiceTest extends TestCase
             })
             ->andReturn(new BinaryFileResponse(Storage::disk('local')->path($filePath)));
 
-        // Chamar o método generateReport com o tipo 'service'
-        $response = $this->reportService->generateReport('service');
+        // Chamar o método generateReport com o tipo 'requests_by_service'
+        $response = $this->reportService->generateReport('requests_by_service');
 
         // Verificar se a resposta é uma instância de BinaryFileResponse
         $this->assertInstanceOf(BinaryFileResponse::class, $response);
@@ -123,7 +123,7 @@ class ReportServiceTest extends TestCase
             ->andReturn(new BinaryFileResponse(Storage::disk('local')->path($filePath)));
 
         // Chamar o método generateReport com o tipo 'average_times'
-        $response = $this->reportService->generateReport('average_times');
+        $response = $this->reportService->generateReport('average_times_by_service');
 
         // Verificar se a resposta é uma instância de BinaryFileResponse
         $this->assertInstanceOf(BinaryFileResponse::class, $response);
@@ -152,6 +152,6 @@ class ReportServiceTest extends TestCase
         // Chamar o método generateReport
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Aguarde o processamento do arquivo de log');
-        $this->reportService->generateReport('consumer');
+        $this->reportService->generateReport('requests_by_consumer');
     }
 }

@@ -12,7 +12,7 @@ class ReportControllerTest extends TestCase
 
     public function test_it_can_generate_a_report()
     {
-        $response = $this->get('/generate-report?reportType=consumer');
+        $response = $this->get('/generate-report?reportType=requests_by_consumer');
 
         $response->assertStatus(200);
         $response->assertDownload();
