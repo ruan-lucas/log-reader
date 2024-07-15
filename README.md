@@ -42,8 +42,14 @@ docker-compose up
 ```
 4. Execute o seguinte comando para finalizar a instalação:
 ````
-docker-compose exec log-reader-app-1 composer install && php artisan migrate && php artisan config:clear && php artisan cache:clear && npm install && npm run dev
-````
+docker exec log_reader_app bash -c "
+    composer install &&
+    php artisan migrate &&
+    php artisan config:clear &&
+    php artisan cache:clear &&
+    npm install &&
+    npm run dev
+"
 5. Acesse a aplicação:
 -  A aplicação estará disponível em `http://localhost:8080`.
 
