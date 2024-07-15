@@ -3,9 +3,9 @@
 namespace App\Jobs;
 
 use App\Models\Request as LogRequest;
-use App\Repositories\ConsumerRepositoryInterface;
-use App\Repositories\RequestRepositoryInterface;
-use App\Repositories\ServiceRepositoryInterface;
+use App\Repositories\Contracts\ConsumerRepositoryInterface;
+use App\Repositories\Contracts\RequestRepositoryInterface;
+use App\Repositories\Contracts\ServiceRepositoryInterface;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

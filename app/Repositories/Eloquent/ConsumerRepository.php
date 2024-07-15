@@ -3,7 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Consumer;
-use App\Repositories\ConsumerRepositoryInterface;
+use App\Repositories\Contracts\ConsumerRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 
 class ConsumerRepository implements ConsumerRepositoryInterface

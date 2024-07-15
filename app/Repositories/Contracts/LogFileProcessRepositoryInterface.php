@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Contracts;
 
 use App\Models\LogFileProcess;
 use Illuminate\Database\Eloquent\Collection;

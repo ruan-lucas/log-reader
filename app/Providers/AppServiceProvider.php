@@ -2,14 +2,14 @@
 
 namespace App\Providers;
 
-use App\Repositories\ConsumerRepositoryInterface;
+use App\Repositories\Contracts\ConsumerRepositoryInterface;
+use App\Repositories\Contracts\LogFileProcessRepositoryInterface;
+use App\Repositories\Contracts\RequestRepositoryInterface;
+use App\Repositories\Contracts\ServiceRepositoryInterface;
 use App\Repositories\Eloquent\ConsumerRepository;
 use App\Repositories\Eloquent\LogFileProcessRepository;
 use App\Repositories\Eloquent\RequestRepository;
 use App\Repositories\Eloquent\ServiceRepository;
-use App\Repositories\LogFileProcessRepositoryInterface;
-use App\Repositories\RequestRepositoryInterface;
-use App\Repositories\ServiceRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

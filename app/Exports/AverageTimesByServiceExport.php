@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Repositories\RequestRepositoryInterface;
+use App\Repositories\Contracts\RequestRepositoryInterface;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 

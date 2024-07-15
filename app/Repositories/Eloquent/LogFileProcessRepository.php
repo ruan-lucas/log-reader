@@ -3,7 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\LogFileProcess;
-use App\Repositories\LogFileProcessRepositoryInterface;
+use App\Repositories\Contracts\LogFileProcessRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 
 class LogFileProcessRepository implements LogFileProcessRepositoryInterface

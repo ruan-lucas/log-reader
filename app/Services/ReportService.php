@@ -2,10 +2,11 @@
 
 namespace App\Services;
 
+use App\Constants\ReportTypeConstant;
 use App\Exports\AverageTimesByServiceExport;
 use App\Exports\RequestsByConsumerExport;
 use App\Exports\RequestsByServiceExport;
-use App\Repositories\LogFileProcessRepositoryInterface;
+use App\Repositories\Contracts\LogFileProcessRepositoryInterface;
 use InvalidArgumentException;
 use Maatwebsite\Excel\Excel;
 use Maatwebsite\Excel\Facades\Excel as ExcelFacade;
@@ -27,11 +28,11 @@ class ReportService
         }
 
         switch ($reportType) {
-            case 'consumer':
+            case ReportTypeConstant::REQUESTS_BY_CONSUMER:
                 return ExcelFacade::download(new RequestsByConsumerExport, 'relatorio_requisicoes_por_consumidor.csv', Excel::CSV, ['Content-Type' => 'application/csv']);
-            case 'service':
+            case ReportTypeConstant::REQUESTS_BY_SERVICE:
                 return ExcelFacade::download(new RequestsByServiceExport, 'relatorio_requisicoes_por_servico.csv', Excel::CSV, ['Content-Type' => 'application/csv']);
-            case 'average_times':
+            case ReportTypeConstant::REQUESTS_BY_AVERAGE_TIMES:
                 return ExcelFacade::download(new AverageTimesByServiceExport, 'relatorio_tempos_medios_por_servico.csv', Excel::CSV, ['Content-Type' => 'application/csv']);
             default:
                 throw new InvalidArgumentException('Tipo de relatório inválido');

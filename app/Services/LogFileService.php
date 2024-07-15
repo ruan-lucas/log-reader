@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Jobs\ProcessLogFile;
-use App\Repositories\LogFileProcessRepositoryInterface;
+use App\Repositories\Contracts\LogFileProcessRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Storage;

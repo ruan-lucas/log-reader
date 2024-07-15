@@ -3,7 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Request;
-use App\Repositories\RequestRepositoryInterface;
+use App\Repositories\Contracts\RequestRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 
 class RequestRepository implements RequestRepositoryInterface
