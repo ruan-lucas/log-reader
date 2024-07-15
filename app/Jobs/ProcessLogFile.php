@@ -61,24 +61,23 @@ class ProcessLogFile implements ShouldQueue
             // Converte o log de JSON para array
             $data = json_decode($log, true);
 
-            // Busca o consumidor e o serviço pelo UUID
-            $consumer = $consumerRepository->firstBy(['uuid' => $data['authenticated_entity']['consumer_id']]);
+            // Extrai os UUIDs do consumidor e do serviço
+            $consumerUuid = $data['authenticated_entity']['consumer_id']['uuid'] ?? null;
+            $serviceUuid = $data['service']['id'] ?? null;
 
-            // Busca o serviço pelo UUID
-            $service = $serviceRepository->firstBy(['uuid' => $data['service']['id']]);
-
-            // Se não encontrar o consumidor, cria um novo
-            if (! $consumer && isset($data['authenticated_entity']['consumer_id']['uuid'])) {
-                $consumer = $consumerRepository->create([
-                    'uuid' => $data['authenticated_entity']['consumer_id']['uuid'],
-                ]);
+            // Usa o método updateOrCreate para evitar condições de corrida
+            if ($consumerUuid) {
+                $consumer = $consumerRepository->updateOrCreate(
+                    ['uuid' => $consumerUuid],
+                    ['uuid' => $consumerUuid]
+                );
             }
 
-            // Se não encontrar o serviço, cria um novo
-            if (! $service && isset($data['service']['id'])) {
-                $service = $serviceRepository->create([
-                    'uuid' => $data['service']['id'],
-                ]);
+            if ($serviceUuid) {
+                $service = $serviceRepository->updateOrCreate(
+                    ['uuid' => $serviceUuid],
+                    ['uuid' => $serviceUuid]
+                );
             }
 
             // Cria um novo log de requisição
