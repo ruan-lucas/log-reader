@@ -87,7 +87,7 @@
                 Requisições por consumidor
               </td>
               <td class="text-center">
-                <button class="btn btn-outline-primary rounded-pill btn-sm" onclick="downloadReport(this, 'consumer')">
+                <button class="btn btn-outline-primary rounded-pill btn-sm" onclick="downloadReport(this, 'requests_by_consumer')">
                   Baixar
                 </button>
               </td>
@@ -98,7 +98,7 @@
                 Requisições por serviço
               </td>
               <td class="text-center">
-                <button class="btn btn-outline-primary rounded-pill btn-sm" onclick="downloadReport(this, 'service')">
+                <button class="btn btn-outline-primary rounded-pill btn-sm" onclick="downloadReport(this, 'requests_by_service')">
                   Baixar
                 </button>
               </td>
@@ -109,7 +109,7 @@
                 Tempo médio de request, proxy e gateway por serviço.
               </td>
               <td class="text-center">
-                <button class="btn btn-outline-primary rounded-pill btn-sm" onclick="downloadReport(this, 'average_times')">
+                <button class="btn btn-outline-primary rounded-pill btn-sm" onclick="downloadReport(this, 'average_times_by_service')">
                   Baixar
                 </button>
               </td>

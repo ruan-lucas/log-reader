@@ -18,7 +18,7 @@ class ReportController extends Controller
     public function generateReport(Request $request)
     {
         $request->validate([
-            'reportType' => 'required|string|in:consumer,service,average_times',
+            'reportType' => 'required|string|in:requests_by_consumer,requests_by_service,average_times_by_service',
         ]);
 
         $reportType = $request->input('reportType');
