@@ -50,6 +50,7 @@ docker exec log_reader_app bash -c "
     npm install &&
     npm run dev
 "
+````
 5. Acesse a aplicação:
 -  A aplicação estará disponível em `http://localhost:8080`.
 
