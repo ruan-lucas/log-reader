@@ -39,5 +39,11 @@ COPY docker/supervisor/laravel-worker.conf /etc/supervisor/conf.d/laravel-worker
 # Copiar a configuração do PHP
 COPY docker/php/php.ini /usr/local/etc/php/php.ini
 
+# run composer install
+COPY composer.json composer.lock ./
+
+# Instalação das dependências do Composer
+RUN composer install --no-scripts --no-autoloader
+
 # Diretório de trabalho
 WORKDIR /var/www/html
