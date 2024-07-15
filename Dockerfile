@@ -21,7 +21,9 @@ RUN apk add --no-cache \
     libpng-dev \
     nodejs \
     npm \
-    $PHPIZE_DEPS
+    $PHPIZE_DEPS \
+    && pecl install redis \
+    && docker-php-ext-enable redis
 
 # Configuração e instalação das extensões PHP
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \

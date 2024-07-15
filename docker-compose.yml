@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   app:
+    container_name: log_reader_app
     build:
       context: .
       dockerfile: Dockerfile
@@ -15,6 +16,7 @@ services:
       - APP_DEBUG=true
 
   webserver:
+    container_name: log_reader_webserver
     image: nginx:alpine
     volumes:
       - ./:/var/www/html
@@ -25,6 +27,7 @@ services:
       - app
 
   db:
+    container_name: log_reader_db
     image: mysql:8.0
     restart: always
     environment:
@@ -38,11 +41,13 @@ services:
       - dbdata:/var/lib/mysql
 
   redis:
+    container_name: log_reader_redis
     image: redis:alpine
     ports:
       - "6379:6379"
 
   queue:
+    container_name: log_reader_queue
     build:
       context: .
       dockerfile: Dockerfile
