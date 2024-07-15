@@ -9,10 +9,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class ReportService
 {
-    public function __construct(protected LogFileProcessRepositoryInterface $logFileProcessRepository)
-    {
-        $this->logFileProcessRepository = $logFileProcessRepository;
-    }
+    public function __construct(protected LogFileProcessRepositoryInterface $logFileProcessRepository) {}
 
     public function generateReport(string $reportType): BinaryFileResponse
     {

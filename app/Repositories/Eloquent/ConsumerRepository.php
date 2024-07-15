@@ -8,12 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ConsumerRepository implements ConsumerRepositoryInterface
 {
-    protected $model;
-
-    public function __construct(Consumer $model)
-    {
-        $this->model = $model;
-    }
+    public function __construct(protected Consumer $model) {}
 
     public function all(): Collection
     {

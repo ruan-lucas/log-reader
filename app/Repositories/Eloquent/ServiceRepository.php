@@ -8,12 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ServiceRepository implements ServiceRepositoryInterface
 {
-    protected $model;
-
-    public function __construct(Service $model)
-    {
-        $this->model = $model;
-    }
+    public function __construct(protected Service $model) {}
 
     public function all(): Collection
     {

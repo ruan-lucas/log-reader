@@ -6,10 +6,7 @@ use App\Services\LogFileService;
 
 class PanelController extends Controller
 {
-    public function __construct(protected LogFileService $logFileService)
-    {
-        $this->logFileService = $logFileService;
-    }
+    public function __construct(protected LogFileService $logFileService) {}
 
     /**
      * Retorna a view principal do painel.

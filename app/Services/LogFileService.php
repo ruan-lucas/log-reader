@@ -11,10 +11,7 @@ use Throwable;
 
 class LogFileService
 {
-    public function __construct(protected LogFileProcessRepositoryInterface $logFileProcessRepository)
-    {
-        $this->logFileProcessRepository = $logFileProcessRepository;
-    }
+    public function __construct(protected LogFileProcessRepositoryInterface $logFileProcessRepository) {}
 
     /**
      * Processa um arquivo de log, dividindo-o em partes e enviando para a fila

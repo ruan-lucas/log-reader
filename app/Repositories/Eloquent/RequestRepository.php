@@ -8,12 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 class RequestRepository implements RequestRepositoryInterface
 {
-    protected $model;
-
-    public function __construct(Request $model)
-    {
-        $this->model = $model;
-    }
+    public function __construct(protected Request $model) {}
 
     public function all(): Collection
     {

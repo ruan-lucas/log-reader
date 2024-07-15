@@ -8,12 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 class LogFileProcessRepository implements LogFileProcessRepositoryInterface
 {
-    protected $model;
-
-    public function __construct(LogFileProcess $model)
-    {
-        $this->model = $model;
-    }
+    public function __construct(protected LogFileProcess $model) {}
 
     public function all(): Collection
     {
