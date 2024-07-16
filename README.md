@@ -28,30 +28,40 @@ Em um ambiente de produção, poderia ser considerada a adição de outras tabel
 
 ## Passos
 1. Clone o repositório:
-```
+```bash
 git clone https://github.com/ruan-lucas/log-reader.git
 cd log-reader
 ```
 2. Configure o arquivo `.env`:
-```
+```bash
 cp .env.example .env
 ```
 3. Estando na raiz do projeto, execute:
+```bash
+docker compose up -d
 ```
-docker-compose up
+4. Execute o seguinte command para entrar no container:
+````bash
+docker exec -it log_reader_app bash
+````
+
+5. Execute os seguintes commands para finalizar a instalação:
+````bash
+composer install &&
+php artisan migrate &&
+php artisan config:clear &&
+php artisan cache:clear &&
+npm install &&
+npm run dev
+````
+6. __Apenas para Linux__ - Execute o seguinte comando dentro do container do Docker para ajustar as permissões do diretório `storage`:
+```bash
+chmod -R 777 ./storage
 ```
-4. Execute o seguinte comando para finalizar a instalação:
-````
-docker exec log_reader_app bash -c "
-    composer install &&
-    php artisan migrate &&
-    php artisan config:clear &&
-    php artisan cache:clear &&
-    npm install &&
-    npm run dev
-"
-````
-5. Acesse a aplicação:
+
+> Obs. O MacOS e o Linux executam os containers de forma diferente, por isso, as vezes, temos que tomar medidas conforme o sistema operacional. Não tenho uma máquina Linux aqui para validar o ambiente perfeitamente, sendo assim, optei por este ajuste para caso fosse necessário utilizá-lo para o ambiente local, no contexto deste teste. Em um ambiente de produção, junto a um ambiente local Linux, haveria alternativas bem melhores para validar e garantir o funcionamento seguro do diretório `storage`. Podemos entender melhor sobre isto [aqui](https://stackoverflow.com/a/43213455).
+
+7. Acesse a aplicação:
 -  A aplicação estará disponível em `http://localhost:8080`.
 
 ## Como testar
