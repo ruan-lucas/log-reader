@@ -156,7 +156,15 @@
     $(button).prop('disabled', true);
 
     fetch("{{route('report.generateReport')}}?reportType=" + reportType)
-        .then(response => response.blob())
+        .then(response => {
+            if (response.status !== 200) {
+              return response.json().then(data => {
+                throw new Error(data.message);
+              });
+            }
+
+            return response.blob();
+        })
         .then(blob => {
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -168,8 +176,10 @@
             $(button).prop('disabled', false);
         })
         .catch(error => {
-            alert('Erro ao baixar o relatório');
-            console.error(error); // Adicione esta linha para depurar erros
+            alert(error.message);
+            console.error(error);
+            $(button).html('Baixar');
+            $(button).prop('disabled', false);
         });
   }
 

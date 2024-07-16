@@ -8,6 +8,7 @@ use App\Exports\RequestsByServiceExport;
 use App\Repositories\Contracts\LogFileProcessRepositoryInterface;
 use App\Services\ReportService;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 use InvalidArgumentException;
 use Maatwebsite\Excel\Excel;
@@ -150,8 +151,16 @@ class ReportServiceTest extends TestCase
             ->andReturn(new EloquentCollection([['status' => 'processing']]));
 
         // Chamar o método generateReport
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Aguarde o processamento do arquivo de log');
-        $this->reportService->generateReport('requests_by_consumer');
+        $response = $this->reportService->generateReport('requests_by_consumer');
+
+        // Verificar se o status code é 400
+        $this->assertEquals(400, $response->getStatusCode());
+
+        // Verificar se a mensagem de erro é retornada
+        $this->assertEquals(json_encode(['message' => 'Aguarde o processamento do arquivo de log']), $response->getContent());
+
+        // Verificar se a resposta é uma instância de JsonResponse
+        $this->assertInstanceOf(JsonResponse::class, $response);
+
     }
 }
